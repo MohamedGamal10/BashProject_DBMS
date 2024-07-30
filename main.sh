@@ -1,4 +1,6 @@
 #!/bin/bash
+# Source Modules
+source ./main_menu/create_db.sh
 
 #Check Databases Dir if not found create one
 DB_ROOT="./databases"
@@ -16,7 +18,7 @@ function main_menu {
     read -p "Choose an option: " option
 
     case $option in
-        1) echo "create_database" ;;
+        1) create_db ;;
         2) echo "list_databases" ;;
         3) echo "connect_database" ;;
         4) echo "drop_database" ;;
