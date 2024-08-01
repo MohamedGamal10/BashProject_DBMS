@@ -2,6 +2,7 @@
 # Source Modules
 source ./main_menu/create_db.sh
 source ./main_menu/list_db.sh
+source ./main_menu/drop_db.sh
 
 #Check Databases Dir if not found create one
 DB_ROOT="./databases"
@@ -22,7 +23,7 @@ function main_menu {
         1) create_db ;;
         2) list_db ;;
         3) echo "connect_database" ;;
-        4) echo "drop_database" ;;
+        4) drop_db ;;
         5) exit 0 ;;
         *) echo "Invalid option"; main_menu ;;
     esac
