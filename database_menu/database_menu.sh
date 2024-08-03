@@ -7,7 +7,6 @@ source ./database_menu/insert_into_table.sh
 source ./database_menu/select_from_table.sh
 source ./database_menu/delete_from_table.sh
 source ./database_menu/update_table.sh
-source ../main.sh
 
 function database_menu {
 
@@ -36,7 +35,7 @@ function database_menu {
 		5) select_from_table "$db_name" ;;
 		6) delete_from_table "$db_name" ;;
 		7) update_table "$db_name" ;;
-		8) main_menu ;;
+		8) echo "Exit" ;;
 		*) echo "Invalid option"; database_menu "$db_name" ;;
 	esac
 

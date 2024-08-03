@@ -1,7 +1,5 @@
 #!/bin/bash
 
-source ./database_menu/database_menu.sh
-
 DB_ROOT="./databases"
 
 function create_table {
