@@ -5,6 +5,7 @@ source ./database_menu/database_menu.sh
 DB_ROOT="../databases"
 
 function connect_db {
+	list_db
 	read -p "Enter database name: " db_name
 	
 	if [ -d "$DB_ROOT/$db_name" ]; then
