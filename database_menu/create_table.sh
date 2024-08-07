@@ -31,40 +31,52 @@ function create_table {
 
 	#Ask for Number of columns
 	read -p "Enter the number of columns: " num_columns
-	columns=""
+	 
+	if [[ "$num_columns" =~ ^[0-9]+$ ]]; then
+		columns=""
 	
 
-	#Loop to enter column name and type
-	 for (( i=1; i<=num_columns; i++ ))
-	 do
-		 #Enter Column name and type
-		 read -p "Enter name for column $i: " col_name
-		 read -p "Enter type for column $i (int, string, auto_increment): " col_type
+		#Loop to enter column name and type
+	 	for (( i=1; i<=num_columns; i++ ))
+	 	do
+		 	#Enter Column name and type
+		 	read -p "Enter name for column $i: " col_name
+		 	read -p "Enter type for column $i (int, string, auto_increment): " col_type
 
-		 if [[ ! "$col_name" =~ ^[a-zA-Z_]+$ ]]; then
-			 echo " "
-			 echo "########################################################################################"
-			 echo "Invalid column name '$col_name'. Column names must contain only letters and underscores."
-			 echo "########################################################################################"
-			 echo " "
+		 	if [[ ! "$col_name" =~ ^[a-zA-Z_]+$ ]]; then
+				echo " "
+			 	echo "########################################################################################"
+			 	echo "Invalid column name '$col_name'. Column names must contain only letters and underscores."
+			 	echo "########################################################################################"
+			 	echo " "
 			 
-			 database_menu "$db_name"
-		 fi
+			 	database_menu "$db_name"
+		 	fi
 
-		 if [[ ! "$col_type" =~ ^(int|string|auto_increment)$ ]]; then
-			 echo " "
-			 echo "###################################################################################"
-			 echo "Invalid column type '$col_type'. Allowed types are int, string, and auto_increment."
-			 echo "###################################################################################"
-			 echo " "	 
+		 	if [[ ! "$col_type" =~ ^(int|string|auto_increment)$ ]]; then
+			 	echo " "
+			 	echo "###################################################################################"
+			 	echo "Invalid column type '$col_type'. Allowed types are int, string, and auto_increment."
+			 	echo "###################################################################################"
+			 	echo " "	 
 	
-			 database_menu "$db_name"
-		 fi
+			 	database_menu "$db_name"
+		 	fi
 		
-		 #Add inserstion to columns variable
-		 columns+="$col_name:$col_type,"
+		 	#Add inserstion to columns variable
+		 	columns+="$col_name:$col_type,"
 		
-	 done
+	 	done
+ 	else
+		
+            	echo " "
+            	echo "###########################################"
+            	echo "Invalid input. Please enter a valid number."
+            	echo "###########################################"
+            	echo " "
+            	database_menu "$db_name"
+        
+	fi
 
 	#Remove last comma to be read in meta file
 	columns="${columns%,}" #Remove pattern ',' from variable
