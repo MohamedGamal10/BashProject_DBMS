@@ -42,6 +42,8 @@ function list_tables {
         echo "#######################################"
         echo " "
         database_menu "$db_name"
+    else
+	database_menu "$db_name"
     fi
 
 
