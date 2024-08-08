@@ -35,7 +35,7 @@ function database_menu {
 		5) select_from_table "$db_name" ;;
 		6) delete_from_table "$db_name" ;;
 		7) update_table "$db_name" ;;
-		8) echo "Exit" ;;
+		8) return ;;
 		*) echo "Invalid option"; database_menu "$db_name" ;;
 	esac
 

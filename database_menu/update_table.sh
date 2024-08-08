@@ -90,7 +90,7 @@ function update_table {
         	#Return
         	database_menu "$db_name"
 	else
-		echo "Error in update "
+		echo "Rows not found to do successful update"
 		database_menu "$db_name"
 	fi
 
