@@ -31,8 +31,12 @@ function insert_into_table {
 	#Get type of columns and get value from user
 	id=$last_value
 	row+="$id,"
-	for i in {2..$columns_num}; 
+	
+	flag=0
+
+	for ((i=2;i<=$columns_num;i++)); 
 	do
+		echo "$column_num"
 		column_name=$(awk -F, -v col="$i" '{print $col}' "$meta_file" | cut -d: -f1)
 		column_type=$(awk -F, -v col="$i" '{print $col}' "$meta_file" | cut -d: -f2)
 			
@@ -41,28 +45,34 @@ function insert_into_table {
 		if [ "$column_type" == "int" ]; then
 			if [[ "$value" =~ ^[0-9]+$ ]]; then
 				 row+="$value,"
-				 break
 			else
 				echo "Invalid input: $value is not an integer."
+				flag=1
 			fi
                  
 		elif [ "$column_type" == "string" ]; then
 			if [[ "$value" =~ ^[a-zA-Z]+$ ]]; then
 				row+="$value,"
-				break
+	
 			else
 				echo "Invalid input: $value should only contain letters."
+				flag=1
 			fi
 		else
 			echo "Unknown type"
-			break
+			flag=1
+			
 		fi
 
 	done
 
 	#Insert Data to file
-	echo "${row%,}" >> "$data_file"
-	echo "Row inserted."
+	if [ $flag -eq 1 ]; then
+		echo "Row Not inserted."
+	else
+		echo "${row%,}" >> "$data_file"
+		echo "Row inserted."
+	fi
 
 
 	#Return
